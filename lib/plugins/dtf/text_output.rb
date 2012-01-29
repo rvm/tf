@@ -1,4 +1,4 @@
-class YATF::TextOutput
+class DTF::TextOutput
   def initialize
   end
 

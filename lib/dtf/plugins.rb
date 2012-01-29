@@ -1,4 +1,4 @@
-class YATF::Plugins
+class DTF::Plugins
   include Singleton
 
   def initialize
@@ -10,7 +10,7 @@ class YATF::Plugins
   end
 
   def detect
-    @plugins = Gem.find_files('plugins/yatf/*.rb')
+    @plugins = Gem.find_files('plugins/dtf/*.rb')
   end
   
   def add plugin
@@ -39,7 +39,7 @@ class YATF::Plugins
       end
       _list.each{|item, klass|
         require item
-        eval("@#{type}_plugins << YATF::#{klass}.new")
+        eval("@#{type}_plugins << DTF::#{klass}.new")
       }
     end
   end

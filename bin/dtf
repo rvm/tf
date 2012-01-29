@@ -2,6 +2,6 @@
 
 program_root = File.dirname( File.dirname( __FILE__ ) )
 
-require "#{program_root}/lib/yatf"
+require "#{program_root}/lib/dtf"
 
-YATF.new.run_tests ARGV
+DTF.new.run_tests ARGV

@@ -1,4 +1,4 @@
-class YATF::StatusTest
+class DTF::StatusTest
   def initialize
   end
 

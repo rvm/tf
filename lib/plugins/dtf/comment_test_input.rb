@@ -1,4 +1,4 @@
-class YATF::CommentTestInput
+class DTF::CommentTestInput
   def initialize
   end
 
