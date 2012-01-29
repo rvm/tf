@@ -4,6 +4,9 @@ class YATF::Plugins
   def initialize
     detect
     @additional_plugins = []
+    @input_plugins = []
+    @output_plugins = []
+    @test_plugins = []
   end
 
   def detect
@@ -36,8 +39,24 @@ class YATF::Plugins
       end
       _list.each{|item, klass|
         require item
-        eval("YATF::#{klass}").new
+        eval("@#{type}_plugins << YATF::#{klass}.new")
       }
     end
+  end
+
+  def input_plugins
+    @input_plugins
+  end
+
+  def output_plugins *args
+    if args.nil?
+      @output_plugins
+    else
+      @output_plugins.each{|plugin| plugin.send(*args) }
+    end
+  end
+
+  def test_plugins
+    @test_plugins
   end
 end
