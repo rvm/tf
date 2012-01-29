@@ -1,0 +1,12 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    fattr (2.2.0)
+    session (3.1.0)
+      fattr
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  session
