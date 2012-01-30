@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-environment_id="ruby-1.9.3-p0@btf"
+environment_id="ruby-1.9.3-p0@dtf"
 
 rvmrc_rvm_version="1.10.2" # 1.10.1 seams as a safe start
 eval "$(echo ${rvm_version}.${rvmrc_rvm_version} | awk -F. '{print "[[ "$1*65536+$2*256+$3" -ge "$4*65536+$5*256+$6" ]]"}' )" || {
