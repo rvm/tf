@@ -16,23 +16,23 @@ class TestEnvMatchTest < MiniTest::Unit::TestCase
   end
 
   def test_env_success
-    result, msg = @test.execute "env[TEST]=/test/", "", "", "", 0, {:TEST => "test"}
+    result, msg = @test.execute "env[TEST]=/test/", "", "", "", 0, {'TEST' => "test"}
     assert result
     assert_equal msg, "passed: env TEST = /test/"
   end
   def test_env_failed
-    result, msg = @test.execute "env[TEST]=/test/", "", "", "", 0, {:TEST => "other"}
-    assert ! result
+    result, msg = @test.execute "env[TEST]=/test/", "", "", "", 0, {'TEST' => "other"}
+    assert !result
     assert_equal msg, "failed: env TEST = /test/ # was 'other'"
   end
   def test_env_not_success
-    result, msg = @test.execute "env[TEST]!=/test/", "", "", "", 0, {:TEST => "other"}
+    result, msg = @test.execute "env[TEST]!=/test/", "", "", "", 0, {'TEST' => "other"}
     assert result
     assert_equal msg, "passed: env TEST != /test/"
   end
   def test_env_not_failed
-    result, msg = @test.execute "env[TEST]!=/test/", "", "", "", 0, {:TEST => "test"}
-    assert ! result
+    result, msg = @test.execute "env[TEST]!=/test/", "", "", "", 0, {'TEST' => "test"}
+    assert !result
     assert_equal msg, "failed: env TEST != /test/ # was 'test'"
   end
 end
