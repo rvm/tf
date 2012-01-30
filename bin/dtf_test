@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+program_root = File.dirname( File.dirname( __FILE__ ) )
+
+require "#{program_root}/lib/dtf"
+
+if ARGV.empty?
+  puts "no test files specified, use * for selecting multiple files, ex:"
+  puts "dtf_test test/*/*"
+  exit 1
+else
+  ARGV.each do |filename|
+    require File.join(ENV['PWD'], filename)
+  end
+end
