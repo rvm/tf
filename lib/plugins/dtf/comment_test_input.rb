@@ -9,6 +9,8 @@ class DTF::CommentTestInput
   def load file_name
     lines = []
     File.readlines(file_name).each{|line|
+      # Fix jruby-1.6.6-d19 bug with empty strings from files
+      line = "#{line}"
       # remove human comments
       line.sub!(/##.*$/,'')
       # reject empty lines
