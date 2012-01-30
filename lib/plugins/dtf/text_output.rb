@@ -1,18 +1,24 @@
 class DTF::TextOutput
+  RED = `tput setaf 1`
+  GREEN = `tput setaf 2`
+  YELLOW = `tput setaf 3`
+  BLUE = `tput setaf 4`
+  RESET = `tput setaf 9`
+
   def initialize
   end
 
   def start_test name, commands, env
     commands ||= {}
-    puts "##### starting test #{name} with #{commands.keys.size} commands and #{commands.values.flatten.size} tests."
+    puts "#{BLUE}##### starting test #{name} with #{commands.keys.size} commands and #{commands.values.flatten.size} tests.#{RESET}"
   end
 
   def end_test name
-    puts "##### finished test #{name}."
+    puts "#{BLUE}##### finished test #{name}.#{RESET}"
   end
 
   def start_command command, tests
-    puts "$ #{command}"
+    puts "#{YELLOW}$ #{command}#{RESET}"
   end
 
   def end_command command, status, env
@@ -28,6 +34,10 @@ class DTF::TextOutput
   end
 
   def test_processed test, status, msg
-    puts "# #{msg}"
+    if status
+      puts "#{GREEN}# #{msg}#{RESET}"
+    else
+      puts "#{RED}# #{msg}#{RESET}"
+    end
   end
 end
