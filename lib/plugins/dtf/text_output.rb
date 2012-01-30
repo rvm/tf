@@ -8,20 +8,19 @@ class DTF::TextOutput
   def initialize
   end
 
-  def start_test name, commands, env
-    commands ||= {}
-    puts "#{BLUE}##### starting test #{name} with #{commands.keys.size} commands and #{commands.values.flatten.size} tests.#{RESET}"
+  def start_test test, env
+    puts "#{BLUE}##### starting test #{test[:name]}.#{RESET}"
   end
 
-  def end_test name
-    puts "#{BLUE}##### finished test #{name}.#{RESET}"
+  def end_test test
+    #puts "#{BLUE}##### finished test #{test[:name]}.#{RESET}"
   end
 
-  def start_command command, tests
-    puts "#{YELLOW}$ #{command}#{RESET}"
+  def start_command line
+    puts "#{YELLOW}$ #{line[:cmd]}#{RESET}"
   end
 
-  def end_command command, status, env
+  def end_command line, status, env
     #puts ": $?=#{status}"
   end
 

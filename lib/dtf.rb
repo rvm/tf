@@ -15,6 +15,7 @@ Dir["#{lib_root}/dtf/*.rb"].each{|lib| require lib }
 class DTF
   def initialize
     @plugins = DTF::Plugins.instance
+    @failures = 0
   end
 
   def run_tests args
@@ -22,6 +23,7 @@ class DTF
     wanted = %w( all ) #if wanted.empty?
     @plugins.load(wanted)
     process(args)
+    @failures == 0
   end
 
   def process args
@@ -31,8 +33,8 @@ class DTF
       if plugin.nil?
         puts "Could not find plugin to read '#{arg}'."
       else
-        name, commands = plugin.load(arg)
-        process_test name, commands
+        test = plugin.load(arg)
+        process_test test
       end
     }
   end
@@ -41,12 +43,14 @@ class DTF
     Hash[ shell.execute("/usr/bin/printenv --null")[0].split("\0").map{|var| var.split('=', 2) } ]
   end
 
-  def process_test name, commands
+  def process_test test
+    name, commands = test[:name], test[:commands]
     shell = Session::Bash.new
-    _env = env shell
-    @plugins.output_plugins(:start_test, name, commands, _env)
-    commands.each do |command, tests|
-      @plugins.output_plugins(:start_command, command, tests)
+    _env = env(shell)
+    @plugins.output_plugins(:start_test, test, _env)
+    commands.each do |line|
+      command, tests = line[:cmd], line[:tests]
+      @plugins.output_plugins(:start_command, line)
       _stdout  = StringIO.new
       _stderr  = StringIO.new
       _stdboth = StringIO.new
@@ -63,11 +67,11 @@ class DTF
         end
       end
       _status = shell.status
-      _env = env shell
-      @plugins.output_plugins(:end_command, command, _status, _env)
-      process_command_tests _stdout, _stderr, _stdboth, _status, _env, tests
+      _env = env(shell)
+      @plugins.output_plugins(:end_command, line, _status, _env)
+      process_command_tests _stdout.string, _stderr.string, _stdboth.string, _status, _env, tests
     end
-    @plugins.output_plugins(:end_test, name)
+    @plugins.output_plugins(:end_test, test)
   end
 
   def process_command_tests _stdout, _stderr, _stdboth, _status, env, tests
@@ -77,6 +81,7 @@ class DTF
         puts "Could not find plugin for test '#{test}'."
       else
         status, msg = plugin.execute(test, _stdout, _stderr, _stdboth, _status, env)
+        @failures+=1 unless status
         @plugins.output_plugins(:test_processed, test, status, msg)
       end
     end

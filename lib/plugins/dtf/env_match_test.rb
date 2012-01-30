@@ -7,8 +7,8 @@ class DTF::EnvMatchTest
 
   def execute test, _stdout, _stderr, _stdboth, _status, env
     test =~ DTF::EnvMatchTest::MATCHER
-    variable, sign, value = $1, $2, $3
-    var_val = env[ variable.to_sym ]
+    variable, sign, value = $1.strip, $2, $3
+    var_val = env[ variable ]
     if ( sign == "=" ) ^ ( Regexp.new(value) =~ "#{var_val}" )
       [ false, "failed: env #{variable} #{sign} /#{value}/ # was '#{var_val}'" ]
     else

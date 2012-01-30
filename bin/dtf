@@ -4,4 +4,4 @@ program_root = File.dirname( File.dirname( __FILE__ ) )
 
 require "#{program_root}/lib/dtf"
 
-DTF.new.run_tests ARGV
+exit DTF.new.run_tests ARGV

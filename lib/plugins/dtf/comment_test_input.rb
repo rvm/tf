@@ -12,18 +12,23 @@ class DTF::CommentTestInput
       # remove human comments
       line.sub!(/##.*$/,'')
       # reject empty lines
+      line.strip!
       next if line =~ /^$/
       # extract command and tests
       cmd, tests = line.split("#")
       cmd.strip!
-      tests = tests.split(";").map(&:strip)
-      if cmd.blank?
-        lines.last[1] += tests unless lines.last.nil?
+      tests = if tests.blank?
+        []
       else
-        lines << [cmd, tests]
+        tests.split(";").map(&:strip)
+      end
+      if cmd.blank?
+        lines.last[:tests] += tests unless lines.last.nil?
+      else
+        lines << { :cmd => cmd, :tests => tests }
       end
     }
     name = file_name.gsub(/^.*\//,'').sub(/_comment_test\.sh$/,'')
-    [ name, Hash[lines] ]
+    { :name => name, :commands => lines }
   end
 end
