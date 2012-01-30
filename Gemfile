@@ -1,4 +1,4 @@
 source :rubygems
 
 gem 'session'
-gem 'minitest', :platform => :ruby_18
+gem 'minitest' if RUBY_VERSION < "1.9.1"
