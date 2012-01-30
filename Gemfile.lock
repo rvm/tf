@@ -6,6 +6,7 @@ GEM
       fattr
 
 PLATFORMS
+  java
   ruby
 
 DEPENDENCIES
