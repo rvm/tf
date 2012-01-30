@@ -18,7 +18,8 @@ class DTF
   end
 
   def run_tests args
-    wanted = %w( CommentTestInput TextOutput all_test )
+    #TODO: read wanted from project/user config
+    wanted = %w( all ) #if wanted.empty?
     @plugins.load(wanted)
     process(args)
   end
