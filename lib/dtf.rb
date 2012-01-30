@@ -28,6 +28,7 @@ class DTF
 
   def process args
     input_data = Hash.new
+    @plugins.output_plugins(:start_processing)
     args.each{|arg|
       plugin = @plugins.input_plugins.find{|plugin| plugin.matches? arg }
       if plugin.nil?
@@ -37,6 +38,7 @@ class DTF
         process_test test
       end
     }
+    @plugins.output_plugins(:end_processing)
   end
 
   def env shell

@@ -8,6 +8,12 @@ class DTF::TextOutput
   def initialize
   end
 
+  def start_processing
+  end
+
+  def end_processing
+  end
+
   def start_test test, env
     puts "#{BLUE}##### starting test #{test[:name]}.#{RESET}"
   end
