@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "dtf"
-  s.version = "0.1.2"
+  s.version = "0.1.3"
   s.date = "2012-02-02"
   s.summary = "Deryl Testing Framework"
   s.email = "mpapis+dtf@gmail.com"
