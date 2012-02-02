@@ -2,17 +2,41 @@
 
 Plugable framework for testing shell scripts (at least now).
 
-## Running
+## Usage
 
-    $ bin/dtf example_tests/comment/true_comment_test.sh 
+    $ gem install dtf
+    $ dtf <path/to/file>_comment_test.sh
 
-    ##### starting test true with 1 commands and 2 tests.
-    $ true
-    # passed: status = 0
-    # passed: status != 1
-    ##### finished test true.
+## Comment tests
 
-## Architecture
+Filename has to end with _comment_test.sh
+
+Example test file:
+
+    ## User comments start with double #
+    ## command can be writen in one line with multiple tests:
+    true # status=0; match=/^$/
+    ## or tests can be placed in following lines:
+    false
+    # status=1
+
+### Matchers
+
+The test can be negated by replacing `=` with `!=`
+
+- status=<number> - check if command returned given status (0 is success)
+- match=/<regexp>/ - regexp match command output
+- env[<var_name>]=/<regexp>/ - regexp match the given environment variable name
+
+## Example
+
+    $ bin/dtf example_tests/comment/*
+    F..
+    ##### Processed commands 2 of 2, success tests 2 of 3, failure tests 1 of 3.
+    $ false
+    # failed: status = 0 # was 1
+
+## Internal architecture
 
 Framework will load plugins from any available gem and local `lib/` path, for example:
 
