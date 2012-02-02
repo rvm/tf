@@ -6,7 +6,7 @@ require 'session'
 lib_root = File.dirname( __FILE__ )
 
 # include lib in path so plugins get found with Gem.find_files
-$: << "#{lib_root}"
+$:.unshift "#{lib_root}"
 
 class DTF; end
 # load dtf/*.rb
@@ -20,7 +20,7 @@ class DTF
 
   def run_tests args
     #TODO: read wanted from project/user config
-    wanted = %w( all ) #if wanted.empty?
+    wanted = %w( all_input all_test ErrorSummaryOutput ) #if wanted.empty?
     @plugins.load(wanted)
     process(args)
     @failures == 0
