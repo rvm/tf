@@ -37,7 +37,7 @@ class DTF::ErrorSummaryOutput
   end
 
   def summary
-    @summary.sort{|a,b| ak,av=a ; bk,bv=b ; ak <=> ab }.each{|k,v|
+    @summary.sort{|a,b| ak,av=a ; bk,bv=b ; ak <=> bk }.each{|k,v|
       puts "#{YELLOW}$ #{v[:cmd]}#{RESET}"
       v[:failed_tests].each{|t| puts "#{RED}# #{t}#{RESET}" }
     }
