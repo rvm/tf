@@ -14,6 +14,7 @@ Dir["#{lib_root}/dtf/*.rb"].each{|lib| require lib }
 
 class DTF
   def initialize
+    @ruby = File.join(RbConfig::CONFIG["bindir"],RbConfig::CONFIG["ruby_install_name"])
     @plugins = DTF::Plugins.instance
     @failures = 0
   end
@@ -42,7 +43,9 @@ class DTF
   end
 
   def env shell
-    Hash[ shell.execute("/usr/bin/printenv --null")[0].split("\0").map{|var| var.split('=', 2) } ]
+    Hash[ shell.execute(
+      @ruby + ' -e \'ENV.each{|k,v| printf "#{k}=#{v}\0"}\''
+    )[0].split("\0").map{|var| var.split('=', 2) } ]
   end
 
   def process_test test
