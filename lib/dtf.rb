@@ -20,25 +20,22 @@ class DTF
   end
 
   def run_tests args
-    #TODO: read wanted from project/user config
-    wanted = %w( all_input all_test ErrorSummaryOutput ) #if wanted.empty?
-    @plugins.load(wanted)
-    process(args)
+    @plugins.load(%w( all_test ))
+    input_files, not_processed = @plugins.parse_args(args)
+    if not_processed.size > 0
+      $stderr.puts "No plugin did recognize this options '#{not_processed*" "}'."
+      exit 1
+    end
+    @plugins.load(%w( ErrorSummaryOutput )) if @plugins.output_plugins.empty?
+    process(input_files)
     @failures == 0
   end
 
-  def process args
-    input_data = Hash.new
+  def process input_files
     @plugins.output_plugins(:start_processing)
-    args.each{|arg|
-      plugin = @plugins.input_plugins.find{|plugin| plugin.matches? arg }
-      if plugin.nil?
-        puts "Could not find plugin to read '#{arg}'."
-      else
-        test = plugin.load(arg)
-        process_test test
-      end
-    }
+    input_files.each do |plugin,file|
+      process_test( plugin.load(file) )
+    end
     @plugins.output_plugins(:end_processing)
   end
 
@@ -81,14 +78,14 @@ class DTF
 
   def process_command_tests _stdout, _stderr, _stdboth, _status, env, tests
     tests.each do |test|
-      plugin = @plugins.test_plugins.find{|plugin| plugin.matches? test }
+      plugin = @plugins.test_plugins.find{|_plugin| _plugin.matches? test }
       if plugin.nil?
-        puts "Could not find plugin for test '#{test}'."
+        status, msg = false, "Could not find plugin for test '#{test}'."
       else
         status, msg = plugin.execute(test, _stdout, _stderr, _stdboth, _status, env)
-        @failures+=1 unless status
-        @plugins.output_plugins(:test_processed, test, status, msg)
       end
+      @failures+=1 unless status
+      @plugins.output_plugins(:test_processed, test, status, msg)
     end
   end
 

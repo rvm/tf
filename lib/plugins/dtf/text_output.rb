@@ -5,6 +5,10 @@ class DTF::TextOutput
   BLUE = `tput setaf 4`
   RESET = `tput setaf 9`
 
+  def self.argument_matches? argument
+    [:load] if argument == "--text"
+  end
+
   def initialize
   end
 

@@ -35,6 +35,16 @@ The test can be negated by replacing `=` with `!=`
     ##### Processed commands 2 of 2, success tests 2 of 3, failure tests 1 of 3.
     $ false
     # failed: status = 0 # was 1
+    
+    $ bin/dtf example_tests/comment/* --text
+    ##### starting test failure.
+    $ false
+    # failed: status = 0 # was 1
+    ##### starting test success.
+    $ true
+    # passed: status = 0
+    # passed: status != 1
+    ##### Processed commands 2 of 2, success tests 2 of 3, failure tests 1 of 3.
 
 ## Internal architecture
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0
+date: 2012-03-28
+
+ - add support for selecting output plugin --text, --dotted
+ - improved detecting input plugins
+ - improved error detection, count failed plugin search also as errors
+
 ## 0.1.3
 date: 2012-02-02
 

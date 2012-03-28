@@ -3,7 +3,7 @@ require 'plugins/dtf/comment_test_input'
 
 class TestCommentTestInput < MiniTest::Unit::TestCase
   def setup
-    @test = DTF::CommentTestInput.new
+    @test = DTF::CommentTestInput
     @file1 = Tempfile.new(['','_comment_test.sh'])
     @file2 = Tempfile.new(['','_wrong_test.sh'])
   end
@@ -21,11 +21,11 @@ class TestCommentTestInput < MiniTest::Unit::TestCase
   end
 
   def test_matches
-    assert @test.matches?(@file1.path), "'#{@file1.path}' did not matched"
-    assert !@test.matches?(@file2.path), "'#{@file2.path}' matched but should not"
-    assert !@test.matches?("/path/to/file.rb")
-    assert !@test.matches?("/path/to/file_comment_test.rb")
-    assert !@test.matches?("anything")
+    assert @test.argument_matches?(@file1.path), "'#{@file1.path}' did not matched"
+    assert !@test.argument_matches?(@file2.path), "'#{@file2.path}' matched but should not"
+    assert !@test.argument_matches?("/path/to/file.rb")
+    assert !@test.argument_matches?("/path/to/file_comment_test.rb")
+    assert !@test.argument_matches?("anything")
   end
 
   def test_reading_two_different_lines
@@ -33,7 +33,7 @@ class TestCommentTestInput < MiniTest::Unit::TestCase
       @file1.write "true # status=0\n"
       @file1.write "false # status!=0; match=/^$/\n"
     end
-    data = @test.load @file1.path
+    data = @test.new.load @file1.path
     assert !data[:commands].empty?, "Commands missing '#{data}'."
     assert_equal data[:commands].size, 2, "Wrong number of commands '#{data[:commands]}'."
     assert !data[:commands][0][:cmd].empty?, "Command missing '#{data[:commands][0]}'."
@@ -46,7 +46,7 @@ class TestCommentTestInput < MiniTest::Unit::TestCase
       @file1.write "true # status=0\n"
       @file1.write "true # status!=0; match=/^$/\n"
     end
-    data = @test.load @file1.path
+    data = @test.new.load @file1.path
     assert_equal data[:commands].size, 2, "Wrong number of commands '#{data[:commands]}'."
     assert_equal data[:commands].map{|line| line[:tests].size }.inject(&:+), 3, "Wrong number of tests '#{data[:commands]}'."
   end
@@ -57,7 +57,7 @@ class TestCommentTestInput < MiniTest::Unit::TestCase
       @file1.write "\n"
       @file1.write "true # status!=0; match=/^$/\n"
     end
-    data = @test.load @file1.path
+    data = @test.new.load @file1.path
     assert_equal data[:commands].size, 2, "Wrong number of commands '#{data[:commands]}'."
     assert_equal data[:commands].map{|line| line[:tests].size }.inject(&:+), 3, "Wrong number of tests '#{data[:commands]}'."
   end
@@ -67,7 +67,7 @@ class TestCommentTestInput < MiniTest::Unit::TestCase
       @file1.write "##true # status=0\n"
       @file1.write "true # status!=0; match=/^$/ ## nothing to add\n"
     end
-    data = @test.load @file1.path
+    data = @test.new.load @file1.path
     assert_equal data[:commands].size, 1, "Wrong number of commands '#{data[:commands]}'."
     assert_equal data[:commands].map{|line| line[:tests].size }.inject(&:+), 2, "Wrong number of tests '#{data[:commands]}'."
   end
@@ -80,7 +80,7 @@ class TestCommentTestInput < MiniTest::Unit::TestCase
       @file1.write "# status!=0\n"
       @file1.write "# match=/^$/\n"
     end
-    data = @test.load @file1.path
+    data = @test.new.load @file1.path
     assert_equal data[:commands].size, 2, "Wrong number of commands '#{data[:commands]}'."
     assert_equal data[:commands].map{|line| line[:tests].size }.inject(&:+), 3, "Wrong number of tests '#{data[:commands]}'."
   end

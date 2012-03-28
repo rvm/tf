@@ -1,10 +1,9 @@
 Gem::Specification.new do |s|
   s.name = "dtf"
-  s.version = "0.1.3"
-  s.date = "2012-02-02"
+  s.version = "0.2.0"
   s.summary = "Deryl Testing Framework"
   s.email = "mpapis+dtf@gmail.com"
-  s.homepage = "http://github.com/dtf-gems/DTF"
+  s.homepage = "http://github.com/dtf-gems/dtf"
   s.description = "Testing Framework solely based on plugins. For now only tests using Bash."
   s.has_rdoc = false
   s.authors = ["Deryl R. Doucette", "Michal Papis"]

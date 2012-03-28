@@ -5,7 +5,11 @@ class DTF::ErrorSummaryOutput
   BLUE = `tput setaf 4`
   RESET = `tput setaf 9`
 
-  def initialize
+  def self.argument_matches? argument
+    [:load] if argument == "--dotted"
+  end
+
+  def initialize output=nil
     @counts={}
     @counts[:commands] = 0
     @counts[:tests] = 0
@@ -15,6 +19,7 @@ class DTF::ErrorSummaryOutput
     @counts[:tests_failure] = 0
     @counter_id = 0
     @summary = {}
+    @output = output || $stdout
   end
 
   def start_processing
@@ -37,8 +42,8 @@ class DTF::ErrorSummaryOutput
   end
 
   def summary
-    @summary.sort{|a,b| ak,av=a ; bk,bv=b ; ak <=> bk }.each{|k,v|
-      puts "#{YELLOW}$ #{v[:cmd]}#{RESET}"
+    @summary.sort{|a,b| ak,_=a ; bk,_=b ; ak <=> bk }.each{|k,v|
+      @output.puts "#{YELLOW}$ #{v[:cmd]}#{RESET}"
       v[:failed_tests].each{|t| puts "#{RED}# #{t}#{RESET}" }
     }
     text = ""
@@ -46,9 +51,9 @@ class DTF::ErrorSummaryOutput
   end
 
   def end_processing
-    printf "\n"
-    puts status
-    puts summary
+    @output.printf "\n"
+    @output.puts status
+    @output.puts summary
   end
 
   def start_test test, env
@@ -76,12 +81,12 @@ class DTF::ErrorSummaryOutput
   end
 
   def test_processed test, status, msg
-    printf status ? "." : "F"
+    @output.printf status ? "." : "F"
     if status
       @counts[:tests_success] += 1
     else
       @counts[:tests_failure] += 1
-      @summary[@current_line[:counter_id]] ||= @current_line.merge(:failed_tests=>[])
+      @summary[@current_line[:counter_id]] ||= @current_line.merge({:failed_tests=>[]})
       @summary[@current_line[:counter_id]][:failed_tests] << msg
     end
   end

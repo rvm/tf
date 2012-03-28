@@ -2,8 +2,12 @@ class DTF::CommentTestInput
   def initialize
   end
 
-  def matches? name
-    name =~ /_comment_test\.sh$/ && File.exist?(name)
+  def self.argument_matches? argument
+    if argument =~ /_comment_test\.sh$/ && File.exist?(argument)
+      [:load, :input]
+    else
+      nil
+    end
   end
 
   def load file_name
