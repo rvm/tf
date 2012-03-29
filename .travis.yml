@@ -12,6 +12,7 @@ notifications:
   irc:
     channels:
       - "irc.freenode.org#rvm-test"
+      - "irc.freenode.org#dtf-gems"
   email:
     recipients:
       - mpapis@gmail.com
