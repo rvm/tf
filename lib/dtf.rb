@@ -23,7 +23,7 @@ class DTF
     @plugins.load(%w( all_test ))
     input_files, not_processed = @plugins.parse_args(args)
     if not_processed.size > 0
-      $stderr.puts "No plugin did recognize this options '#{not_processed*" "}'."
+      $stderr.puts "No plugin recognized this option '#{not_processed*" "}'."
       exit 1
     end
     @plugins.load(%w( ErrorSummaryOutput )) if @plugins.output_plugins.empty?
