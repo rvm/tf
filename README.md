@@ -1,6 +1,9 @@
 # Deryls Testing Framework
 
-Plugable framework for testing shell scripts (at least now).
+DTF is a pluggable framework for testing shell scripts (at least now).
+DTF also is an umbrella which incorporates (eventually) multiple gems, each of which provides additional functionality
+to DTF. DTF is the skeleton upon which all other dtf-* gems build.
+
 
 ## Usage
 
