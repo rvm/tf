@@ -12,12 +12,12 @@ class DTF::Plugins
   def detect
     @plugins = Gem.find_files('plugins/dtf/*.rb')
   end
-  
+
   def add plugin
     @additional_plugins << plugin
   end
 
-  def delets plugin
+  def delete plugin
     @additional_plugins.delete plugin
   end
 
