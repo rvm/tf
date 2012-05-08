@@ -29,7 +29,7 @@ class DTF::Plugins
     # collect to lists
     _list = @plugins + @additional_plugins
     # filter by pattern if given
-    _list.select!{|item| item.match("_#{pattern}.rb$") } unless pattern.nil?
+    _list = _list.select{|item| item.match("_#{pattern}.rb$") } unless pattern.nil?
     # get path and class name
     _list.map!{|item| [ item, file_to_class(item), pattern ] }
     # TODO: limit plugin versions (highest || use bundler)
@@ -41,7 +41,7 @@ class DTF::Plugins
     [ :input, :test, :output ].each do |type|
       _list = list(type)
       if ! wanted.include?("all") && ! wanted.include?("all_#{type}")
-        _list.select!{|item, klass, _type| wanted.include?(klass) }
+        _list = _list.select{|item, klass, _type| wanted.include?(klass) }
       end
       _list.each{|item, klass, _type|
         klass = DTF.const_get(klass)
