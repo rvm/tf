@@ -1,9 +1,9 @@
 require 'minitest/autorun'
-require 'plugins/dtf/env_match_test'
+require 'plugins/tf/env_match_test'
 
 class TestEnvMatchTest < MiniTest::Unit::TestCase
   def setup
-    @test = DTF::EnvMatchTest.new
+    @test = TF::EnvMatchTest.new
   end
   def test_matches
     assert @test.matches?("env[TEST]=/aa/")

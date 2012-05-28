@@ -1,14 +1,15 @@
-# Deryls Testing Framework
+# Testing Framework
 
-DTF is a pluggable framework for testing shell scripts (at least now).
-DTF also is an umbrella which incorporates (eventually) multiple gems, each of which provides additional functionality
-to DTF. DTF is the skeleton upon which all other dtf-* gems build.
+TF is a pluggable framework for testing shell scripts (at least now).
+TF also is an umbrella which incorporates (eventually) multiple gems, each of which provides additional functionality
+to TF. TF is the skeleton upon which all other tf-* gems build.
 
 
 ## Usage
 
-    $ gem install dtf
-    $ dtf <path/to/file>_comment_test.sh
+    $ gem install tf
+    $ tf <path/to/file>_comment_test.sh
+    $ tf --text <path/to/file>_comment_test.sh
 
 ## Comment tests
 
@@ -33,13 +34,13 @@ The test can be negated by replacing `=` with `!=`
 
 ## Example
 
-    $ bin/dtf example_tests/comment/*
+    $ bin/tf example_tests/comment/*
     F..
     ##### Processed commands 2 of 2, success tests 2 of 3, failure tests 1 of 3.
     $ false
     # failed: status = 0 # was 1
     
-    $ bin/dtf example_tests/comment/* --text
+    $ bin/tf example_tests/comment/* --text
     ##### starting test failure.
     $ false
     # failed: status = 0 # was 1
@@ -53,14 +54,18 @@ The test can be negated by replacing `=` with `!=`
 
 Framework will load plugins from any available gem and local `lib/` path, for example:
 
-    lib/plugins/dtf/text_output.rb
-    lib/plugins/dtf/status_test.rb
-    lib/plugins/dtf/comment_test_input.rb
+    lib/plugins/tf/text_output.rb
+    lib/plugins/tf/status_test.rb
+    lib/plugins/tf/comment_test_input.rb
 
 The search pattern is:
 
-    lib/plugins/dtf/*.rb
+    lib/plugins/tf/*.rb
 
 And plugins are selected with:
 
-    lib/plugins/dtf/*_{input,test,output}.rb
+    lib/plugins/tf/*_{input,test,output}.rb
+
+## Thanks
+
+ - Deryl R. Doucette

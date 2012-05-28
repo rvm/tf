@@ -1,4 +1,4 @@
-class DTF::CommentTestInput
+class TF::CommentTestInput
   def initialize
   end
 

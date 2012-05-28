@@ -1,9 +1,9 @@
 require 'minitest/autorun'
-require 'plugins/dtf/status_test'
+require 'plugins/tf/status_test'
 
 class TestStatusTest < MiniTest::Unit::TestCase
   def setup
-    @test = DTF::StatusTest.new
+    @test = TF::StatusTest.new
   end
   def test_matches
     assert @test.matches?("status=0")

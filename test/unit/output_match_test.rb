@@ -1,9 +1,9 @@
 require 'minitest/autorun'
-require 'plugins/dtf/output_match_test'
+require 'plugins/tf/output_match_test'
 
 class TestOutputMatchTest < MiniTest::Unit::TestCase
   def setup
-    @test = DTF::OutputMatchTest.new
+    @test = TF::OutputMatchTest.new
   end
   def test_matches
     assert @test.matches?("match=/aa/")

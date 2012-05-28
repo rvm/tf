@@ -1,4 +1,4 @@
-class DTF::TextOutput
+class TF::TextOutput
   RED = `tput setaf 1`
   GREEN = `tput setaf 2`
   YELLOW = `tput setaf 3`

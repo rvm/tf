@@ -8,14 +8,14 @@ lib_root = File.dirname( __FILE__ )
 # include lib in path so plugins get found with Gem.find_files
 $:.unshift "#{lib_root}"
 
-class DTF; end
-# load dtf/*.rb
-Dir["#{lib_root}/dtf/*.rb"].each{|lib| require lib }
+class TF; end
+# load tf/*.rb
+Dir["#{lib_root}/tf/*.rb"].each{|lib| require lib }
 
-class DTF
+class TF
   def initialize
     @ruby = File.join(RbConfig::CONFIG["bindir"],RbConfig::CONFIG["ruby_install_name"])
-    @plugins = DTF::Plugins.instance
+    @plugins = TF::Plugins.instance
     @failures = 0
   end
 

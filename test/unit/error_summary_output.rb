@@ -1,9 +1,9 @@
 require 'minitest/autorun'
-require 'plugins/dtf/error_summary_output'
+require 'plugins/tf/error_summary_output'
 
 class TestErrorSummaryOutput < MiniTest::Unit::TestCase
   def setup
-    @test = DTF::ErrorSummaryOutput.new self
+    @test = TF::ErrorSummaryOutput.new self
     @outputs = []
   end
 

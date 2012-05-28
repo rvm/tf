@@ -1,9 +1,9 @@
 require 'minitest/autorun'
-require 'plugins/dtf/stats_output'
+require 'plugins/tf/stats_output'
 
 class TestStatsOutput < MiniTest::Unit::TestCase
   def setup
-    @test = DTF::StatsOutput.new
+    @test = TF::StatsOutput.new
   end
 
   # Build input data, will create command for every integer passed,

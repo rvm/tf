@@ -1,9 +1,9 @@
 require 'minitest/autorun'
-require 'plugins/dtf/comment_test_input'
+require 'plugins/tf/comment_test_input'
 
 class TestCommentTestInput < MiniTest::Unit::TestCase
   def setup
-    @test = DTF::CommentTestInput
+    @test = TF::CommentTestInput
     @file1 = Tempfile.new(['','_comment_test.sh'])
     @file2 = Tempfile.new(['','_wrong_test.sh'])
   end

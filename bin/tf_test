@@ -2,11 +2,11 @@
 
 program_root = File.dirname( File.dirname( __FILE__ ) )
 
-require "#{program_root}/lib/dtf"
+require "#{program_root}/lib/tf"
 
 if ARGV.empty?
   puts "no test files specified, use * for selecting multiple files, ex:"
-  puts "dtf_test test/*/*"
+  puts "tf_test test/*/*"
   exit 1
 else
   ARGV.each do |filename|

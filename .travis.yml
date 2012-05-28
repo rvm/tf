@@ -7,14 +7,12 @@ rvm:
   - rbx-19mode
   - jruby-18mode
   - jruby-19mode
-script: 'bin/dtf_test test/*/*.rb'
+script: 'bin/tf_test test/*/*.rb'
 notifications:
   irc:
     channels:
       - "irc.freenode.org#rvm-test"
-      - "irc.freenode.org#dtf-gems"
   email:
     recipients:
       - mpapis@gmail.com
-      - me@deryldoucette.com
     on_failure: change

@@ -2,6 +2,6 @@
 
 program_root = File.dirname( File.dirname( __FILE__ ) )
 
-require "#{program_root}/lib/dtf"
+require "#{program_root}/lib/tf"
 
-exit DTF.new.run_tests ARGV
+exit TF.new.run_tests ARGV

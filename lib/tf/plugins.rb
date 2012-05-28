@@ -1,4 +1,4 @@
-class DTF::Plugins
+class TF::Plugins
   include Singleton
 
   def initialize
@@ -10,7 +10,7 @@ class DTF::Plugins
   end
 
   def detect
-    @plugins = Gem.find_files('plugins/dtf/*.rb')
+    @plugins = Gem.find_files('plugins/tf/*.rb')
   end
 
   def add plugin
@@ -44,14 +44,14 @@ class DTF::Plugins
         _list = _list.select{|item, klass, _type| wanted.include?(klass) }
       end
       _list.each{|item, klass, _type|
-        klass = DTF.const_get(klass)
+        klass = TF.const_get(klass)
         instance_variable_get("@#{type}_plugins".to_sym) << klass.new
       }
     end
   end
 
   def match_arg_klass arg, klass, type
-    klass = DTF.const_get(klass)
+    klass = TF.const_get(klass)
     return nil unless klass.respond_to? :argument_matches?
     matches = klass.argument_matches? arg
     return nil if matches.nil?

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0
+date: 2012-05-28
+
+ - rename to tf
+
 ## 0.2.0
 date: 2012-03-28
 
@@ -21,7 +26,7 @@ date: 2012-02-02
 date: 2012-01-31
 
  - support for more platforms
- - status_output plugin - print status line on the end
+ - `status_output` plugin - print status line on the end
 
 ## 0.1.0
 date: 2012-01-30
