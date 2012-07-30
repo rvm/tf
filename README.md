@@ -32,6 +32,11 @@ The test can be negated by replacing `=` with `!=`
 - match=/<regexp>/ - regexp match command output
 - env[<var_name>]=/<regexp>/ - regexp match the given environment variable name
 
+### Selecting shell / runner program
+
+From version 0.3.1 Shebang lines are read and interpreted to select the runner shell.
+Still only Bash / ZSH like shells are allowed.
+
 ## Example
 
     $ bin/tf example_tests/comment/*

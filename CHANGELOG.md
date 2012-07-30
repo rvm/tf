@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.1
+date: 2012-07-30
+
+ - add support for selecting runner shell via shebang line
+
 ## 0.3.0
 date: 2012-05-28
 
