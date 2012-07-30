@@ -46,8 +46,8 @@ class TF
   end
 
   def process_test test
-    name, commands = test[:name], test[:commands]
-    shell = Session::Bash.new
+    name, commands, execution_shell = test[:name], test[:commands], test[:shell]
+    shell = Session::Sh.new(:prog => execution_shell)
     _env = env(shell)
     @plugins.output_plugins(:start_test, test, _env)
     commands.each do |line|

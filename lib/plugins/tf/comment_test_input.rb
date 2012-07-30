@@ -12,7 +12,10 @@ class TF::CommentTestInput
 
   def load file_name
     lines = []
-    File.readlines(file_name).each{|line|
+    file_lines = File.readlines(file_name)
+    shell = "bash"
+    shell = file_lines.shift.sub(/^#!/,'') if file_lines[0] =~ /^#!/
+    file_lines.each{|line|
       # Fix jruby-1.6.6-d19 bug with empty strings from files
       line = "#{line}"
       # remove human comments
@@ -35,6 +38,6 @@ class TF::CommentTestInput
       end
     }
     name = file_name.gsub(/^.*\//,'').sub(/_comment_test\.sh$/,'')
-    { :name => name, :commands => lines }
+    { :name => name, :commands => lines, :shell => shell }
   end
 end
