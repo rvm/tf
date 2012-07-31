@@ -41,7 +41,7 @@ class TF
 
   def env shell
     Hash[ shell.execute(
-      @ruby + ' -e \'ENV.each{|k,v| printf "#{k}=#{v}\0"}\''
+      @ruby + ' -e \'ENV.each{|k,v| printf("%s=%s\0","#{k}","#{v}") }\''
     )[0].split("\0").map{|var| var.split('=', 2) } ]
   end
 
