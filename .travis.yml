@@ -8,7 +8,8 @@ rvm:
   - jruby-18mode
   - jruby-19mode
 before_script:
-  - 'apt-get install zsh'
+  - sudo apt-get update
+  - sudo apt-get install bash zsh
 script: 'bin/tf_test test/*/*.rb && bundle exec tf --text test/comment/*_comment_test.sh'
 notifications:
   irc:
