@@ -2,5 +2,6 @@
 #ruby-gemset=tf
 source :rubygems
 
-gem 'session'
+gemspec
+
 gem 'minitest' if RUBY_VERSION < "1.9.1"
