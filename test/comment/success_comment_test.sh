@@ -1,1 +1,1 @@
-true # status=0; status!=1
+echo "empty" # status=0; status!=1
