@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.2
+date: 2012-07-30
+
+ - fix loading env in zsh
+
 ## 0.3.1
 date: 2012-07-30
 
