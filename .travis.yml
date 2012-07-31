@@ -7,6 +7,8 @@ rvm:
   - rbx-19mode
   - jruby-18mode
   - jruby-19mode
+before_script:
+  - 'apt-get install zsh'
 script: 'bin/tf_test test/*/*.rb && bundle exec tf --text test/comment/*_comment_test.sh'
 notifications:
   irc:
