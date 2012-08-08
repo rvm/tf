@@ -9,6 +9,7 @@ class TF::EnvMatchTest
     test =~ TF::EnvMatchTest::MATCHER
     variable, sign, value = $1.strip, $2, $3
     var_val = env[ variable ]
+    var_val = "not a string" unless var_val.is_a? String
     if ( sign == "=" ) ^ ( Regexp.new(value) =~ "#{var_val}" )
       [ false, "failed: env #{variable} #{sign} /#{value}/ # was '#{var_val}'" ]
     else
