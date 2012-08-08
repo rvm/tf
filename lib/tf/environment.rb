@@ -52,7 +52,7 @@ EOF
         else
           holder += line
         end
-        if terminator && line[-1] == terminator
+        if terminator && line.chars.to_a.last == terminator
           terminator=nil
         end
         if holder && terminator.nil?
@@ -76,7 +76,7 @@ EOF
       end
     end
     def parse_array name, value
-      if value[0] && value[0][0] == '['
+      if value[0] && value[0].chars.to_a.first == '['
         value = value.map do |string|
           string =~ /\[([^\]]+)\]=(.*)/m
           [ $1, $2 ]
