@@ -30,8 +30,31 @@ class TestEnvironment < MiniTest::Unit::TestCase
 
       'array1=([0]="four" [1]="five" [2]="six" [10]="ten")' => ["array1", {'0'=>'four','1'=>'five','2'=>'six','10'=>'ten'} ],
       "array2=(four five six '' '' '' '' '' '' ten)"        => ["array2", {'1'=>'four','2'=>'five','3'=>'six','4'=>'','5'=>'','6'=>'','7'=>'','8'=>'','9'=>'','10'=>'ten'} ]
+
     }.each do |example, result|
       assert_equal(result, @test.parse_var( example ) )
     end
+  end
+
+  def test_show_env_command_bash_session
+    shell = Session::Sh.new(:prog => 'bash')
+    result = shell.execute("x=3;\n#{@test.show_env_command}")
+    result = result[0].split(/\n/)
+    result = @test.parse_env( result )
+    assert_equal "3", result["x"]
+  end
+
+  def test_show_env_command_zsh_session
+    shell = Session::Sh.new(:prog => 'zsh')
+    result = shell.execute("x=3;\n#{@test.show_env_command}")
+    result = result[0].split(/\n/)
+    result = @test.parse_env( result )
+    assert_equal "3", result["x"]
+  end
+
+  def test_show_env_command_zsh_popen
+    result = IO.popen("x=3;\n#{@test.show_env_command}") {|io|io.readlines}
+    result = @test.parse_env( result )
+    assert_equal "3", result["x"]
   end
 end
