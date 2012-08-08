@@ -40,9 +40,11 @@ class TF
   end
 
   def env shell
-    Hash[ shell.execute(
-      @ruby + ' -e \'ENV.each{|k,v| printf("%s=%s\0","#{k}","#{v}") }\''
-    )[0].split("\0").map{|var| var.split('=', 2) } ]
+    TF::Environment.parse_env(
+      shell.execute(
+        TF::Environment.show_env_command
+      )[0].split(/\n/)
+    )
   end
 
   def process_test test
