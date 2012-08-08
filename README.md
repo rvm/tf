@@ -30,7 +30,8 @@ The test can be negated by replacing `=` with `!=`
 
 - status=<number> - check if command returned given status (0 is success)
 - match=/<regexp>/ - regexp match command output
-- env[<var_name>]=/<regexp>/ - regexp match the given environment variable name
+- env[<var_name>]=~/<regexp>/ - regexp match the given environment variable name
+- env[<var_name>]?=[array|string|nil] - verify type of the given environment variable name
 
 ### Selecting shell / runner program
 
@@ -44,7 +45,7 @@ Still only Bash / ZSH like shells are allowed.
     ##### Processed commands 2 of 2, success tests 2 of 3, failure tests 1 of 3.
     $ false
     # failed: status = 0 # was 1
-    
+
     $ bin/tf example_tests/comment/* --text
     ##### starting test failure.
     $ false
