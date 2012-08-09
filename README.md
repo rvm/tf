@@ -60,6 +60,12 @@ Still only Bash / ZSH like shells are allowed.
     # passed: status != 1
     ##### Processed commands 2 of 2, success tests 2 of 3, failure tests 1 of 3.
 
+## Troubleshooting
+
+Use environment variable `TF_DEBUG` to enable additional logging:
+
+    TF_DEBUG=1 tf --text  example_tests/comment/*
+
 ## Internal architecture
 
 Framework will load plugins from any available gem and local `lib/` path, for example:

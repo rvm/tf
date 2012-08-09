@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.1
+date: 2012-08-09
+
+ - fix detecting environment variables names
+ - fix detecting variables with numbers in names
+ - fix filtering environment variables
+ - add `TF_DEBUG` for troubleshooting
+
 ## 0.4.0
 date: 2012-08-09
 

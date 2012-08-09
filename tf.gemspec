@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "tf"
-  s.version = "0.4.0"
+  s.version = "0.4.1"
   s.summary = "Testing Framework"
   s.email = "mpapis+tf@gmail.com"
   s.homepage = "http://github.com/mpapis/tf"

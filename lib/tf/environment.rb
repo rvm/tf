@@ -22,7 +22,7 @@ class TF::Environment
   HANDLER=<<EOF.gsub(/\n/,'')
 set | awk -F= '
   BEGIN{v=0;}
-  /^[a-zA-Z_]+=/{v=1;}
+  /^[a-zA-Z_][a-zA-Z0-9_]*=/{v=1;}
   v==1&&$2~/^['\\''\\$]/{v=2;}
   v==1&&$2~/^\\(/{v=3;}
   v==2&&/'\\''$/&&!/'\\'\\''$/{v=1;}
@@ -41,14 +41,18 @@ EOF
       terminator=nil
       output.each do |line|
         line.chomp!
-        if holder.nil? && line =~ /^[^=]+=([\('\$]?)/
-          holder = line
-          if $1 && !$1.empty?
-            terminator = $1.sub(/\$/,"'").sub(/\(/,")")
+        if holder.nil?
+          if line =~ /^[^=]+=([\('\$]?)/
+            holder = line
+            if $1 && !$1.empty?
+              terminator = $1.sub(/\$/,"'").sub(/\(/,")")
+            end
+          elsif line =~ /^[^=]*=/
+            holder = line
+            terminator=nil
+          else
+            $stderr.puts "Unknown environment token: #{line}." if ENV["TF_DEBUG"]
           end
-        elsif holder.nil? && line =~ /^[^=]*=/
-          holder = line
-          terminator=nil
         else
           holder += line
         end

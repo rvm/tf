@@ -1,8 +1,8 @@
 class TF::EnvArrTest
   MATCHER = {
-    :all  => /^env\[(.*)\]\[\]([!]?=)[~]?\/(.*)\/$/,
-    :one  => /^env\[(.*)\]\[(.+)\]([!]?=)[~]?\/(.*)\/$/,
-    :size => /^env\[(.*)\]\[\]([!]?=)([[:digit:]]+)$/,
+    :all  => /^env\[([a-zA-Z_][a-zA-Z0-9_]*)\]\[\]([!]?=)[~]?\/(.*)\/$/,
+    :one  => /^env\[([a-zA-Z_][a-zA-Z0-9_]*)\]\[(.+)\]([!]?=)[~]?\/(.*)\/$/,
+    :size => /^env\[([a-zA-Z_][a-zA-Z0-9_]*)\]\[\]([!]?=)([[:digit:]]+)$/,
   }
 
   def matches? test
@@ -12,6 +12,7 @@ class TF::EnvArrTest
 
   def execute test, _stdout, _stderr, _stdboth, _status, env
     type, matcher = TF::EnvArrTest::MATCHER.find{|k,v| test =~ v }
+    $stderr.puts "EnvArrTest: #{type}." if ENV["TF_DEBUG"]
     send "execute_#{type}".to_sym, matcher, test, _stdout, _stderr, _stdboth, _status, env
   end
 

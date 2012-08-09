@@ -1,5 +1,5 @@
 class TF::EnvTypeTest
-  MATCHER = /^env\[(.*)\]\?([!]?=)(array|string|nil)/
+  MATCHER = /^env\[([a-zA-Z_][a-zA-Z0-9_]*)\]\?([!]?=)(array|string|nil)/
 
   def matches? test
     test =~ TF::EnvTypeTest::MATCHER
