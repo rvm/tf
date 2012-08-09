@@ -28,7 +28,7 @@ class TestEnvMatchTest < MiniTest::Unit::TestCase
   def test_env_failed_arr
     result, msg = @test.execute "env[TEST]=/test/", "", "", "", 0, {'TEST' => {"1" => "other"} }
     assert !result
-    assert_equal msg, "failed: env TEST = /test/ # was 'not a string'"
+    assert_equal msg, "failed: env TEST = /test/ # not a string"
   end
   def test_env_not_success
     result, msg = @test.execute "env[TEST]!=/test/", "", "", "", 0, {'TEST' => "other"}
@@ -42,7 +42,7 @@ class TestEnvMatchTest < MiniTest::Unit::TestCase
   end
   def test_env_not_failed_arr
     result, msg = @test.execute "env[TEST]!=/test/", "", "", "", 0, {'TEST' => nil}
-    assert result
-    assert_equal "passed: env TEST != /test/", msg
+    assert ! result
+    assert_equal "failed: env TEST != /test/ # not a string", msg
   end
 end

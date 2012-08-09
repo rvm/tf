@@ -1,5 +1,5 @@
 class TF::EnvMatchTest
-  MATCHER = /^env\[(.*)\]([!]?=)[~]?\/(.*)\//
+  MATCHER = /^env\[(.*)\]([!]?=)[~]?\/(.*)\/$/
 
   def matches? test
     test =~ TF::EnvMatchTest::MATCHER
@@ -9,7 +9,9 @@ class TF::EnvMatchTest
     test =~ TF::EnvMatchTest::MATCHER
     variable, sign, value = $1.strip, $2, $3
     var_val = env[ variable ]
-    var_val = "not a string" unless var_val.is_a? String
+    unless var_val.is_a? String
+      return [ false, "failed: env #{variable} #{sign} /#{value}/ # not a string" ]
+    end
     if ( sign == "=" ) ^ ( Regexp.new(value) =~ "#{var_val}" )
       [ false, "failed: env #{variable} #{sign} /#{value}/ # was '#{var_val}'" ]
     else
