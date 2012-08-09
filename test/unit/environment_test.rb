@@ -1,5 +1,4 @@
 require 'minitest/autorun'
-require 'tf/environment'
 
 class TestEnvironment < MiniTest::Unit::TestCase
   def setup
