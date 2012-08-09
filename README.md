@@ -32,6 +32,9 @@ The test can be negated by replacing `=` with `!=`
 - match=/<regexp>/ - regexp match command output
 - env[<var_name>]=~/<regexp>/ - regexp match the given environment variable name
 - env[<var_name>]?=[array|string|nil] - verify type of the given environment variable name
+- env[<var_name>][]=<size> - verify size of the given environment variable name
+- env[<var_name>][]=/<regexp>/ - regexp match all of elements of the given environment variable name
+- env[<var_name>][<index>]=/<regexp>/ - regexp match given element of the given environment variable name
 
 ### Selecting shell / runner program
 
