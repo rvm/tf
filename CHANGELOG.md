@@ -5,6 +5,7 @@ date: 2012-08-09
 
  - fix reading environment
  - extend testing environment: array & type
+ - extend testing match stdout / stderr
 
 ## 0.3.2
 date: 2012-07-30

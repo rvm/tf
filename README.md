@@ -29,7 +29,8 @@ Example test file:
 The test can be negated by replacing `=` with `!=`
 
 - status=<number> - check if command returned given status (0 is success)
-- match=/<regexp>/ - regexp match command output
+- match=/<regexp>/ - regexp match command output both stdout and stderr
+- match[stdout|stderr]=/<regexp>/ - regexp match command either stdout or stderr
 - env[<var_name>]=~/<regexp>/ - regexp match the given environment variable name
 - env[<var_name>]?=[array|string|nil] - verify type of the given environment variable name
 - env[<var_name>][]=<size> - verify size of the given environment variable name
