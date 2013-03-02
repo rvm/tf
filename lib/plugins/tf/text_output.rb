@@ -39,7 +39,7 @@ class TF::TextOutput
   end
 
   def command_err err
-    puts err
+    $stderr.puts err
   end
 
   def test_processed test, status, msg
