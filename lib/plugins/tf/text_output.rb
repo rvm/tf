@@ -3,7 +3,7 @@ class TF::TextOutput
   GREEN = `tput setaf 2`
   YELLOW = `tput setaf 3`
   BLUE = `tput setaf 4`
-  RESET = `tput setaf 9`
+  RESET = `tput sgr0`
 
   def self.argument_matches? argument
     [:load] if argument == "--text"
