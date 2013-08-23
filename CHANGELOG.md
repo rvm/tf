@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.4.3
+date: 2013-08-23
+
+ - fix resetting terminal colors #4, #5 - thanks @aspiers
+
+## 0.4.2
+date: 2013-03-02
+
+ - fix stderr output #3 - thanks @infertux
+ - switch to ruby 2.0.0
+
 ## 0.4.1
 date: 2012-08-09
 
