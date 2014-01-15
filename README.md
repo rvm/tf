@@ -13,7 +13,7 @@ to TF. TF is the skeleton upon which all other tf-* gems build.
 
 ## Comment tests
 
-Filename has to end with _comment_test.sh
+Filename has to end with `_comment_test.sh`
 
 Example test file:
 
