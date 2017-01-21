@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.4
+date: 2017-01-21
+
+ - update ruby versions
+ - close sh session streams on unexpected exit
+ - fix reseting colors in status plugin
+
 ## 0.4.3
 date: 2013-08-23
 
