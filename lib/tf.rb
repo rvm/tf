@@ -76,6 +76,9 @@ class TF
       process_command_tests _stdout.string, _stderr.string, _stdboth.string, _status, _env, tests
     end
     @plugins.output_plugins(:end_test, test)
+  rescue SystemExit, Interrupt
+    shell.close!
+    raise
   end
 
   def process_command_tests _stdout, _stderr, _stdboth, _status, env, tests
