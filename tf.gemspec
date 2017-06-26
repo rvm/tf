@@ -4,6 +4,7 @@ Gem::Specification.new do |s|
   s.summary = "Testing Framework"
   s.email = "mpapis+tf@gmail.com"
   s.homepage = "http://github.com/mpapis/tf"
+  s.license = "Apache-2.0"
   s.description = "Testing Framework solely based on plugins. For now only tests using Bash."
   s.has_rdoc = false
   s.author = "Michal Papis"
