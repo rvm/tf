@@ -1,4 +1,4 @@
-# Testing Framework [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/mpapis/tf)
+# Testing Framework [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/mpapis/tf) [![Build Status](https://travis-ci.org/rvm/tf.svg?branch=master)](https://travis-ci.org/rvm/tf)
 
 TF is a pluggable framework for testing shell scripts (at least now).
 TF also is an umbrella which incorporates (eventually) multiple gems, each of which provides additional functionality
