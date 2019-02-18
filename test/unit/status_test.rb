@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'plugins/tf/status_test'
 
-class TestStatusTest < MiniTest::Unit::TestCase
+class TestStatusTest < Minitest::Test
   def setup
     @test = TF::StatusTest.new
   end

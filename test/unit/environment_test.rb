@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 
-class TestEnvironment < MiniTest::Unit::TestCase
+class TestEnvironment < Minitest::Test
   def setup
     @test = TF::Environment
   end

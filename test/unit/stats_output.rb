@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'plugins/tf/stats_output'
 
-class TestStatsOutput < MiniTest::Unit::TestCase
+class TestStatsOutput < Minitest::Test
   def setup
     @test = TF::StatsOutput.new
   end

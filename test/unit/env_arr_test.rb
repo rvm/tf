@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'plugins/tf/env_arr_test'
 
-class TestEnvArrTest < MiniTest::Unit::TestCase
+class TestEnvArrTest < Minitest::Test
   def setup
     @test = TF::EnvArrTest.new
   end
