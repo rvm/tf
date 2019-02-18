@@ -1,3 +1,5 @@
+gem 'minitest'
+
 require 'minitest/autorun'
 require 'plugins/tf/comment_test_input'
 

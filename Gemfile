@@ -4,4 +4,4 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'minitest' if RUBY_VERSION < "1.9.1"
+gem 'minitest' if RUBY_VERSION < "1.9.3"
