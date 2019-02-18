@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.5
+date: 2019-02-18
+  - ensure old Rubies load the Minitest gem
+  - add a Travis badge
+  - update ruby versions
+  - update Minitest for version 5 changes
+  - fix file executable permissions
+  - remove deprecated RubyGem option that's ignored
+
 ## 0.4.4
 date: 2017-01-21
 
