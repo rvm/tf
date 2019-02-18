@@ -18,7 +18,7 @@ Filename has to end with `_comment_test.sh`
 Example test file:
 
     ## User comments start with double #
-    ## command can be writen in one line with multiple tests:
+    ## command can be written in one line with multiple tests:
     true # status=0; match=/^$/
     ## or tests can be placed in following lines:
     false
