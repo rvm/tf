@@ -8,6 +8,7 @@ Gem::Specification.new do |s|
   s.description = "Testing Framework solely based on plugins. For now only tests using Bash."
   s.author = "Michal Papis"
   s.add_dependency('session','~> 3.1')
+  s.add_development_dependency('minitest', '~> 5')
   s.files = Dir.glob("lib/**/*") + %w( bin/tf LICENSE README.md )
   s.executables  = %w( tf )
 end
