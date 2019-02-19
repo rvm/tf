@@ -1,7 +1,9 @@
+gem 'minitest'
+
 require 'minitest/autorun'
 require 'plugins/tf/comment_test_input'
 
-class TestCommentTestInput < MiniTest::Unit::TestCase
+class TestCommentTestInput < Minitest::Test
   def setup
     @test = TF::CommentTestInput
     @file1 = Tempfile.new(['','_comment_test.sh'])
@@ -12,7 +14,7 @@ class TestCommentTestInput < MiniTest::Unit::TestCase
     @file1.unlink
     @file2.unlink
   end
-  
+
   def file_open file, &block
     file.open
     block.call

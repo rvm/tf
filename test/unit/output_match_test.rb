@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'plugins/tf/output_match_test'
 
-class TestOutputMatchTest < MiniTest::Unit::TestCase
+class TestOutputMatchTest < Minitest::Test
   def setup
     @test = TF::OutputMatchTest.new
   end

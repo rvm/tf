@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'plugins/tf/env_type_test'
 
-class TestEnvTypeTest < MiniTest::Unit::TestCase
+class TestEnvTypeTest < Minitest::Test
   def setup
     @test = TF::EnvTypeTest.new
   end
