@@ -18,7 +18,7 @@ jobs:
           - 2.4.5
           - 2.5.3
           - 2.6.1
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
       - run: curl -sSL https://get.rvm.io | bash
