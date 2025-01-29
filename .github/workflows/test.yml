@@ -1,0 +1,34 @@
+name: test
+
+on:
+  pull_request:
+
+jobs:
+  tests:
+    strategy:
+      matrix:
+        ruby:
+          - jruby
+          - 1.9.2
+          - 1.9.3
+          - 2.0.0
+          - 2.1.0
+          - 2.2.10
+          - 2.3.8
+          - 2.4.5
+          - 2.5.3
+          - 2.6.1
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: curl -sSL https://get.rvm.io | bash
+      - run: rvm install ${{ matrix.ruby }}
+      - run: bin/tf_test test/*/*.rb && bundle exec tf --text test/comment/*_comment_test.sh
+
+  all-passed:
+    runs-on: ubuntu-latest
+    if: always()
+    needs:
+      - tests
+    steps:
+      - run: exit ${{ contains(needs.*.result, 'failure') && 1 || 0 }}
