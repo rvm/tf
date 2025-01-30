@@ -1,4 +1,4 @@
-#ruby=2.6.1
+#ruby=3.4.0
 #ruby-gemset=tf
 source 'https://rubygems.org'
 
