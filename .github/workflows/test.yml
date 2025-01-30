@@ -21,8 +21,12 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - run: curl -sSL https://get.rvm.io | bash
-      - run: source /home/runner/.rvm/scripts/rvm && rvm install ${{ matrix.ruby }}
+#      - run: curl -sSL https://get.rvm.io | bash
+#      - run: source /home/runner/.rvm/scripts/rvm && rvm install ${{ matrix.ruby }}
+      - run: sudo apt-add-repository -y ppa:rael-gc/rvm
+      - run: sudo apt-get update
+      - run: sudo apt-get install rvm
+      - run: sudo usermod -a -G rvm $USER
       - run: bin/tf_test test/*/*.rb && bundle exec tf --text test/comment/*_comment_test.sh
 
   all-passed:
