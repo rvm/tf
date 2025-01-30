@@ -18,15 +18,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - run: sudo apt-get install zsh -y;
+
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
 
       - run: bundle install
-
-      - run: sudo apt-get install zsh -y;
-
-      - run: zsh --version
 
       - run: bin/tf_test test/*/*.rb && bundle exec tf --text test/comment/*_comment_test.sh
 
