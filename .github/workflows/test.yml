@@ -6,7 +6,7 @@ on:
 jobs:
   tests:
     name: ${{ matrix.ruby }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         ruby:
