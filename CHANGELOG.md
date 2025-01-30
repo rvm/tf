@@ -1,6 +1,6 @@
 # Changelog
 
-## Next
+## 0.4.6
 date: 2025-01-30
 
   - require stringio to fix Ruby 3.4.x compatibility
