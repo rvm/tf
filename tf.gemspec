@@ -7,8 +7,13 @@ Gem::Specification.new do |s|
   s.license = "Apache-2.0"
   s.description = "Testing Framework solely based on plugins. For now only tests using Bash."
   s.author = "Michal Papis"
-  s.add_dependency('session','~> 3.1')
+
+  s.add_dependency('session','~> 3.2')
+  s.add_dependency('stringio','~> 3.1')
+
   s.add_development_dependency('minitest', '~> 5')
+
   s.files = Dir.glob("lib/**/*") + %w( bin/tf LICENSE README.md )
+
   s.executables  = %w( tf )
 end

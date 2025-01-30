@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'singleton'
 require 'yaml'
+require 'stringio'
 require 'session'
 
 lib_root = File.dirname( __FILE__ )

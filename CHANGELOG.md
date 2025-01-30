@@ -1,7 +1,13 @@
 # Changelog
 
+## Next
+date: 2025-01-30
+
+  - require stringio to fix Ruby 3.4.x compatibility
+
 ## 0.4.5
 date: 2019-02-18
+  - 
   - ensure old Rubies load the Minitest gem
   - add a Travis badge
   - update ruby versions
