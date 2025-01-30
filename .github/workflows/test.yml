@@ -24,6 +24,12 @@ jobs:
 
       - run: bundle install
 
+      - run: zsh --version
+
+      - run: sudo apt-get install zsh -y;
+
+      - run: zsh --version
+
       - run: bin/tf_test test/*/*.rb && bundle exec tf --text test/comment/*_comment_test.sh
 
   all-passed:
