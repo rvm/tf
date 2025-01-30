@@ -17,12 +17,6 @@ jobs:
           - 3.4
     steps:
       - uses: actions/checkout@v4
-#      - run: curl -sSL https://get.rvm.io | bash
-#      - run: source /home/runner/.rvm/scripts/rvm && rvm install ${{ matrix.ruby }}
-#      - run: sudo apt-add-repository -y ppa:rael-gc/rvm
-#      - run: sudo apt-get update
-#      - run: sudo apt-get install rvm
-#      - run: sudo usermod -a -G rvm $USER
 
       - uses: ruby/setup-ruby@v1
         with:
