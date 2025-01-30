@@ -24,8 +24,6 @@ jobs:
 
       - run: bundle install
 
-      - run: zsh --version
-
       - run: sudo apt-get install zsh -y;
 
       - run: zsh --version
