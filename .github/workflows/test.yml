@@ -1,0 +1,37 @@
+name: test
+
+on:
+  pull_request:
+
+jobs:
+  tests:
+    name: ${{ matrix.ruby }}
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        ruby:
+          - jruby
+          - 3.1
+          - 3.2
+          - 3.3
+          - 3.4
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: sudo apt-get install zsh -y;
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+
+      - run: bundle install
+
+      - run: bin/tf_test test/*/*.rb && bundle exec tf --text test/comment/*_comment_test.sh
+
+  all-passed:
+    runs-on: ubuntu-latest
+    if: always()
+    needs:
+      - tests
+    steps:
+      - run: exit ${{ contains(needs.*.result, 'failure') && 1 || 0 }}
